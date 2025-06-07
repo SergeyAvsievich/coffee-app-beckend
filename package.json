@@ -17,7 +17,8 @@
   "dependencies": {
     "@typescript-eslint/parser": "^8.33.1",
     "D": "^1.0.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "tslog": "^4.9.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.2",
