@@ -1,9 +1,9 @@
-import express from 'express'
+import express from 'express';
 
 const coffeeRouter = express.Router();
 
 coffeeRouter.get('/coffee', (req, res) => {
-    res.send('Coffee');
+	res.send('Coffee');
 });
 
-export { coffeeRouter }
+export { coffeeRouter };
