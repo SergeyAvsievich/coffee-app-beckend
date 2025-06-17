@@ -6,6 +6,7 @@ import { TYPES } from '../types';
 import { BaseController } from '../common/base.controller';
 import { HTTPError } from '../errors/http-error.class';
 import { ICoffeeController } from './coffee.controller.interface';
+import { CoffeeDto } from './dto/coffee.dto';
 
 @injectable()
 export class CoffeeController extends BaseController implements ICoffeeController {
@@ -14,7 +15,7 @@ export class CoffeeController extends BaseController implements ICoffeeControlle
 		this.bindRoutes([{ path: '/coffee', func: this.getCoffee, method: 'get' }]);
 	}
 
-	getCoffee(req: Request, res: Response, next: NextFunction): void {
+	getCoffee(req: Request, res: Response<{}, {}, CoffeeDto>, next: NextFunction): void {
 		// if (req.params) {
 		next(new HTTPError(400, 'Bad request', 'getCoffee'));
 		// }
