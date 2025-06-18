@@ -7,18 +7,28 @@ import { BaseController } from '../common/base.controller';
 import { HTTPError } from '../errors/http-error.class';
 import { ICoffeeController } from './coffee.controller.interface';
 import { CoffeeDto } from './dto/coffee.dto';
+import { ICoffeeService } from './coffee.service,interface';
 
 @injectable()
 export class CoffeeController extends BaseController implements ICoffeeController {
-	constructor(@inject(TYPES.ILoggerService) private loggerService: ILoggerService) {
+	constructor(
+		@inject(TYPES.ILoggerService) private loggerService: ILoggerService,
+		@inject(TYPES.ICoffeeService) private coffeeService: ICoffeeService,
+	) {
 		super(loggerService);
 		this.bindRoutes([{ path: '/coffee', func: this.getCoffee, method: 'get' }]);
 	}
 
-	getCoffee(req: Request, res: Response<{}, {}, CoffeeDto>, next: NextFunction): void {
-		// if (req.params) {
-		next(new HTTPError(400, 'Bad request', 'getCoffee'));
+	async getCoffee(
+		req: Request,
+		res: Response<{}, {}, CoffeeDto>,
+		next: NextFunction,
+	): Promise<void> {
+		const result = await this.coffeeService.getCoffee(req.params);
+		if (!result) {
+			return next(new HTTPError(400, 'Bad request', 'getCoffee'));
+		}
+		this.ok(res, result);
 		// }
-		// this.ok(res, 'Coffee')
 	}
 }

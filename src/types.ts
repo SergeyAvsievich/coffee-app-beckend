@@ -3,4 +3,5 @@ export const TYPES = {
 	ILoggerService: Symbol.for('LoggerService'),
 	ICoffeeController: Symbol.for('CoffeeController'),
 	ExeptionFilter: Symbol.for('ExeptionFilter'),
+	ICoffeeService: Symbol.for('CoffeeService'),
 };
