@@ -8,6 +8,7 @@ import { HTTPError } from '../errors/http-error.class';
 import { ICoffeeController } from './coffee.controller.interface';
 import { CoffeeDto } from './dto/coffee.dto';
 import { ICoffeeService } from './coffee.service,interface';
+import { ValidateMiddleware } from 'src/common/validate.middleware';
 
 @injectable()
 export class CoffeeController extends BaseController implements ICoffeeController {
@@ -16,7 +17,14 @@ export class CoffeeController extends BaseController implements ICoffeeControlle
 		@inject(TYPES.ICoffeeService) private coffeeService: ICoffeeService,
 	) {
 		super(loggerService);
-		this.bindRoutes([{ path: '/coffee', func: this.getCoffee, method: 'get' }]);
+		this.bindRoutes([
+			{
+				path: '/coffee',
+				func: this.getCoffee,
+				method: 'get',
+				middwares: [new ValidateMiddleware(CoffeeDto)],
+			},
+		]);
 	}
 
 	async getCoffee(
