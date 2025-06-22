@@ -7,6 +7,8 @@ import { ILoggerService } from './logger/logger.interface';
 import { TYPES } from './types';
 import { ICoffeeController } from './coffee/coffee.controller.interface';
 import { json } from 'body-parser';
+import { IConfigService } from './config/config.service.interface';
+import { IExeptionFilter } from './errors/exeption.filter.interface';
 
 @injectable()
 export class App {
@@ -17,7 +19,8 @@ export class App {
 	constructor(
 		@inject(TYPES.ILoggerService) private logger: ILoggerService,
 		@inject(TYPES.ICoffeeController) private coffeeController: ICoffeeController,
-		@inject(TYPES.ExeptionFilter) private exeptionFilter: ExeptionFilter,
+		@inject(TYPES.ExeptionFilter) private exeptionFilter: IExeptionFilter,
+		@inject(TYPES.IConfigService) private configService: IConfigService,
 	) {
 		this.app = express();
 		this.port = 8080;

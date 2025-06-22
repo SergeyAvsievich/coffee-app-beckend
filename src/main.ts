@@ -7,14 +7,17 @@ import { TYPES } from './types';
 import { ILoggerService } from './logger/logger.interface';
 import { IExeptionFilter } from './errors/exeption.filter.interface';
 import { ICoffeeController } from './coffee/coffee.controller.interface';
-import { ICoffeeService } from './coffee/coffee.service,interface';
 import { CoffeeService } from './coffee/coffee.service';
+import { IConfigService } from './config/config.service.interface';
+import { ConfigService } from './config/config.service';
+import { ICoffeeService } from './coffee/coffee.service.interface';
 
 export const appBindings = new ContainerModule(({ bind }) => {
-	bind<ILoggerService>(TYPES.ILoggerService).to(LoggerService);
+	bind<ILoggerService>(TYPES.ILoggerService).to(LoggerService).inSingletonScope();
 	bind<ICoffeeController>(TYPES.ICoffeeController).to(CoffeeController);
-	bind<ICoffeeService>(TYPES.ICoffeeService).to(CoffeeService);
-	bind<IExeptionFilter>(TYPES.ExeptionFilter).to(ExeptionFilter);
+	bind<ICoffeeService>(TYPES.ICoffeeService).to(CoffeeService).inSingletonScope();
+	bind<IExeptionFilter>(TYPES.ExeptionFilter).to(ExeptionFilter).inSingletonScope();
+	bind<IConfigService>(TYPES.IConfigService).to(ConfigService).inSingletonScope();
 	bind<App>(TYPES.Application).to(App);
 });
 
