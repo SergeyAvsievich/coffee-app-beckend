@@ -11,6 +11,9 @@ import { CoffeeService } from './coffee/coffee.service';
 import { IConfigService } from './config/config.service.interface';
 import { ConfigService } from './config/config.service';
 import { ICoffeeService } from './coffee/coffee.service.interface';
+import { PrismaService } from './database/prisma.service';
+import { ICoffeeRepository } from './coffee/coffee.repository.interface';
+import { CoffeeRepository } from './coffee/coffee.repository';
 
 export const appBindings = new ContainerModule(({ bind }) => {
 	bind<ILoggerService>(TYPES.ILoggerService).to(LoggerService).inSingletonScope();
@@ -18,6 +21,8 @@ export const appBindings = new ContainerModule(({ bind }) => {
 	bind<ICoffeeService>(TYPES.ICoffeeService).to(CoffeeService).inSingletonScope();
 	bind<IExeptionFilter>(TYPES.ExeptionFilter).to(ExeptionFilter).inSingletonScope();
 	bind<IConfigService>(TYPES.IConfigService).to(ConfigService).inSingletonScope();
+	bind<PrismaService>(TYPES.PrismaService).to(PrismaService).inSingletonScope();
+	bind<ICoffeeRepository>(TYPES.ICoffeeRepository).to(CoffeeRepository).inSingletonScope();
 	bind<App>(TYPES.Application).to(App);
 });
 

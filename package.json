@@ -4,10 +4,14 @@
   "description": "",
   "main": "./src/main.ts",
   "type": "commonjs",
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
   "scripts": {
-    "start": "node ./dist/main.js",
+    "start": "node ./dist/src/main.js",
     "dev": "nodemon",
     "build": "npx tsc",
+    "generate": "npx prisma generate",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --fix --report-unused-disable-directives"
   },
@@ -15,6 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^6.10.1",
     "body-parser": "^2.2.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
@@ -35,6 +40,7 @@
     "globals": "^16.2.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
+    "prisma": "^6.10.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.0"
