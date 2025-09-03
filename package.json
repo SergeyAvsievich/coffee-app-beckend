@@ -11,7 +11,8 @@
     "start": "node ./dist/src/main.js",
     "dev": "nodemon",
     "build": "npx tsc",
-    "generate": "npx prisma generate",
+    "prisma:generate": "npx prisma generate",
+    "prisma:studio": "npx prisma studio",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --fix --report-unused-disable-directives"
   },
@@ -40,7 +41,7 @@
     "globals": "^16.2.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
-    "prisma": "^6.10.1",
+    "prisma": "^6.13.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.0"

@@ -13,7 +13,7 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model CoffeeModel {
+model Coffee {
   id Int @id @default(autoincrement())
   name String
   description String
@@ -21,4 +21,58 @@ model CoffeeModel {
   size String
   price Int
   image String
+  
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  // cartItems CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String @unique
+  coffee Coffee[]
+}
+
+model Cart {
+  id Int @id @default(autoincrement())
+
+  phone String
+  items CartItem[]
+  
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id Int @id @default(autoincrement())
+
+  quantity Int
+  coffeeId Int
+  // coffee Coffee @relation(fields: [coffeeId], references: [id])
+
+  cartId Int
+  cart Cart @relation(fields: [cartId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  token String
+
+  toltalAmount Int
+  status OrderStatus
+  paymentId String
+}
+
+enum OrderStatus {
+  PENDING
+  SUCCESSED
+  CANCELED
 }

@@ -1,6 +1,5 @@
 import { CoffeeModel } from '@prisma/client';
 import { Coffee } from './coffee.entity';
-import { CoffeeDto } from './dto/coffee.dto';
 
 export interface ICoffeeService {
 	getCoffee(page: number, perPage: number, search: string): Promise<CoffeeModel[]>;
